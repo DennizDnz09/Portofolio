@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/59590eb72f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#6270eb',
+                hoverPrimary: '#3648e3',
+                secondary: '#5f6bd4',
+              }
+            }
+          }
+        }
+      </script>
+    <title>mFinance</title>
+</head>
+<body class="w-full font-['Poppins']">
+    <div class="flex w-full h-screen justify-between">
+        <div class="w-1/6 h-full flex flex-col justify-between items-center bg-gray-100">
+          <div class="w-full flex flex-col h-full mt-10 items-center">
+            <h1 class="text-black text-4xl font-bold font-['Righteous']"><em class="text-primary">m</em>Finance</h1>
+            <div class="flex flex-col justify-between h-full">
+              <div class="flex justify-around items-start mt-10 flex-col">
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-user mr-3"></i>Profile</button>
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-wallet mr-3"></i>Wallet</button>
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-repeat mr-3"></i>Trade</button>
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-bell mr-3"></i>Notification</button>
+              </div>
+              <div class="w-full flex justify-around flex-col h-50% mb-10 items-center">
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-circle-info mr-3"></i>Help</button>
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-gear mr-3"></i>Settings</button>
+                <button class="flex items-center p-2 font-semibold text-xl text-black hover:text-white hover:bg-primary rounded-xl w-full duration-200 mb-2"><i class="fa-solid fa-right-from-bracket mr-3"></i>Log Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-gray w-2/3 h=full">
+          <canvas id="myChart" class="mt-10"></canvas>
+
+        </div>
+
+        <div class="flex flex-col w-1/6 h-100% items-center bg-gray-100">
+          <div class="flex justify-between items-center w-5/6 h-20% mt-10">
+            <div class="flex justify-between text-xl w-1/5">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+              <button><i class="fa-solid fa-bell"></i></button>
+            </div> 
+            <button><h1 class="font-bold text-xl">Petrica Marisor<i class="fa-solid fa-user ml-1 text-2xl text-primary"></i></h1></button>
+          </div>
+          <div class="flex flex-col items-start w-5/6 mt-10">
+            <h2 class="text-2xl font-semibold">Total balance</h2>
+            <h1 class="text-5xl font-bold font-['Righteous']" id="amount"></h1>
+          </div>
+          <div class="flex flex-col items-start w-5/6 mt-20">
+            <h2 class="text-2xl font-semibold">Assets</h2>
+            <div class="flex w-5/6 justify-around mt-5">
+              <h1 class="bg-yellow-300 pl-2 pr-2 pt-4 pb-4 rounded-xl font-semibold text-xl"><i class="fa-brands fa-bitcoin mr-1"></i>Crypto</h1>
+              <h1 class="bg-green-300 pl-2 pr-2 pt-4 pb-4 rounded-xl font-semibold text-xl"><i class="fa-solid fa-socks mr-1"></i>Stocks</h1>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script>
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const gradient = ctx.createLinearGradient(0, 0, 0, 500);
+      gradient.addColorStop(0, "rgba(98, 112, 235, 0.5)");
+      gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+      let data = [];
+      for(let i = 0; i < 10; i++){
+        data[i] = Math.floor(Math.random() * 100); 
+      }
+      document.getElementById('amount').innerHTML = data[data.length - 1] + "$";
+      let labels = [];
+      for(let i = 0; i < data.length; i++){
+        labels[i]= i+".05.2022";
+      }
+      const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'Amount of $',
+                  data: data,
+                  borderColor: [
+                      '#6270eb',
+                  ],
+                  borderWidth: 5,
+                  tension: 0.5,
+                  fill: 'start',
+                  backgroundColor: gradient
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      grid: {
+                        color: 'white',
+                      }
+                  },
+                x: {
+                  grid: {
+                    color: 'white'
+                  }
+                }
+              },
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            elements: {
+              point: {
+                radius: 0,
+                hitRadius: 100
+              }
+            }
+          }
+      });
+      </script>
+</body>
+</html>
