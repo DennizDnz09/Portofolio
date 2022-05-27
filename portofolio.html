@@ -18,6 +18,9 @@
                 primary: '#6270eb',
                 hoverPrimary: '#3648e3',
                 secondary: '#5f6bd4',
+                btccolor: '#f2a900',
+                ethcolor: '#14044d',
+                dogecolor: '#cb9800',
               }
             }
           }
@@ -46,28 +49,102 @@
           </div>
         </div>
 
-        <div class="flex flex-col bg-gray w-2/3 h=full">
-          <canvas id="myChart" class="mt-10"></canvas>
-
+        <div class="flex flex-col bg-gray w-2/3 h-full">
+          <h1 class="mt-10 font-semibold text-2xl">Chart</h1>
+          <canvas id="myChart" class="w-full h-3/6 mb-10"></canvas>
+          <div class="w-full h-1/2 flex flex-col items-center overflow-x-hidden overflow-y-scroll">
+            <div class="w-full h-1/2 flex justify-around items-center mb-10">
+              <div class="w-2/5 h-fit flex justify-around items-center bg-gray-200 p-2 rounded-xl">
+                <div class="w-2/5">
+                  <h1 class="text-2xl font-semibold"><i class="fa-brands fa-btc text-btccolor"></i>&nbspBTC - USD</h1>
+                  <h1 class="text-xl font-semibold mt-5">Price:</h1>
+                  <h1 class="font-bold text-btccolor" id="BtcAmount"></h1>
+                </div>
+                <div class="w-2/5">
+                  <canvas id="BtcChart"></canvas>
+                </div>
+              </div>
+              <div class="w-2/5 h-fit flex justify-around items-center bg-gray-200 p-2 rounded-xl">
+                <div class="w-2/5">
+                  <h1 class="text-2xl font-semibold"><i class="fa-brands fa-ethereum text-ethcolor"></i>&nbspETH - USD</h1>
+                  <h1 class="text-2xl font-semibold mt-5">Price:</h1>
+                  <h1 class="font-bold text-ethcolor" id="EthAmount"></h1>
+                </div>
+                <div class="w-2/5">
+                  <canvas id="EthChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="w-full h-1/2 flex justify-around items-center mb-10">
+              <div class="w-2/5 h-fit flex justify-around items-center bg-gray-200 p-2 rounded-xl">
+                <div class="w-2/5">
+                  <h1 class="text-2xl font-semibold"><i class="fa-solid fa-dog text-dogecolor"></i>&nbspDoge - USD</h1>
+                  <h1 class="text-xl font-semibold mt-5">Price:</h1>
+                  <h1 class="font-bold text-dogecolor" id="DogeAmount"></h1>
+                </div>
+                <div class="w-2/5">
+                  <canvas id="DogeChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col w-1/6 h-100% items-center bg-gray-100">
+        <div class="flex flex-col w-1/6 h-100% items-center bg-gray-100 mb-10">
           <div class="flex justify-between items-center w-5/6 h-20% mt-10">
             <div class="flex justify-between text-xl w-1/5">
-              <button><i class="fa-solid fa-magnifying-glass"></i></button>
-              <button><i class="fa-solid fa-bell"></i></button>
+              <button><i class="fa-solid fa-magnifying-glass text-black hover:text-hoverPrimary duration-200"></i></button>
+              <button><i class="fa-solid fa-bell text-black hover:text-hoverPrimary duration-200"></i></button>
             </div> 
-            <button><h1 class="font-bold text-xl">Petrica Marisor<i class="fa-solid fa-user ml-1 text-2xl text-primary"></i></h1></button>
+            <button><h1 class="font-bold text-xl text-black hover:text-hoverPrimary duration-200">Petrica Marisor<i class="fa-solid fa-user ml-1 text-2xl text-primary"></i></h1></button>
           </div>
           <div class="flex flex-col items-start w-5/6 mt-10">
             <h2 class="text-2xl font-semibold">Total balance</h2>
-            <h1 class="text-5xl font-bold font-['Righteous']" id="amount"></h1>
+            <h1 class="text-5xl font-bold font-['Righteous'] mt-1" id="amount"></h1>
           </div>
-          <div class="flex flex-col items-start w-5/6 mt-20">
+          <div class="flex flex-col items-start w-5/6 mt-10">
             <h2 class="text-2xl font-semibold">Assets</h2>
-            <div class="flex w-5/6 justify-around mt-5">
-              <h1 class="bg-yellow-300 pl-2 pr-2 pt-4 pb-4 rounded-xl font-semibold text-xl"><i class="fa-brands fa-bitcoin mr-1"></i>Crypto</h1>
-              <h1 class="bg-green-300 pl-2 pr-2 pt-4 pb-4 rounded-xl font-semibold text-xl"><i class="fa-solid fa-socks mr-1"></i>Stocks</h1>
+            <div class="flex w-5/6 justify-around mt-1 items-center ml-auto mr-auto">
+              <h1 class="bg-yellow-300 hover:bg-yellow-500 pl-2 pr-2 pt-4 pb-4 rounded-xl font-semibold text-xl duration-200 cursor-pointer"><i class="fa-brands fa-bitcoin mr-1"></i>Crypto</h1>
+              <h1 class="bg-green-300 hover:bg-green-500 pl-2 pr-2 pt-4 pb-4 rounded-xl font-semibold text-xl duration-200 cursor-pointer"><i class="fa-solid fa-socks mr-1"></i>Stocks</h1>
+            </div>
+          </div>
+          <div class="flex flex-col justify-between items-center w-5/6 h-full mt-10 rounded-xl cursor-pointer bg-gray-200 overflow-x-hidden overflow-y-scroll">
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
+            </div>
+            <div class="bg-red-300 hover:bg-red-400 duration-200 flex flex-col items-start mt-2 rounded-xl p-2">
+              <h1 class="font-semibold">Dogecoin Jumps on Elon Musk SpaceX Tweet</h1>
+              <h3 class="text-xs">Click to see more! <i class="fa-solid fa-arrow-right"></i></h3>
             </div>
           </div>
         </div>
@@ -118,7 +195,218 @@
               },
             plugins: {
               legend: {
-                display: false
+                display: false,
+              }
+            },
+            elements: {
+              point: {
+                radius: 0,
+                hitRadius: 100
+              }
+            }
+          }
+      });
+
+
+
+
+      const btx = document.getElementById('BtcChart').getContext('2d');
+      const gradientBtc = btx.createLinearGradient(0, 0, 0, 200);
+      gradientBtc.addColorStop(0, "rgba(255, 241, 118, 0.5)");
+      gradientBtc.addColorStop(1, "rgba(0, 0, 0, 0)");
+      let dataBtc = [];
+      for(let i = 0; i < 10; i++){
+        dataBtc[i] = Math.floor(Math.random() * 100000); 
+      }
+      document.getElementById('BtcAmount').innerHTML = dataBtc[dataBtc.length - 1] + "$";
+      let labelsBtc = [];
+      for(let i = 0; i < dataBtc.length; i++){
+        labelsBtc[i]= i+".05.2022";
+      }
+      const BtcChart = new Chart(btx, {
+          type: 'line',
+          data: {
+              labels: labelsBtc,
+              datasets: [{
+                  label: 'Amount of $',
+                  data: dataBtc,
+                  borderColor: [
+                      '#f2a900',
+                  ],
+                  borderWidth: 3,
+                  tension: 0.5,
+                  fill: 'start',
+                  backgroundColor: gradientBtc
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      grid: {
+                        color: '#e5e7eb',
+                      },
+                      ticks: {
+                        display: false,
+                      }
+                  },
+                x: {
+                  grid: {
+                    color: '#e5e7eb'
+                  },
+                  ticks: {
+                    display: false,
+                  }
+                }
+              },
+            plugins: {
+              legend: {
+                display: false,
+                labels: {
+                  display: false,
+                }
+              }
+            },
+            elements: {
+              point: {
+                radius: 0,
+                hitRadius: 100
+              }
+            }
+          }
+      });
+
+
+
+
+
+
+      const eth = document.getElementById('EthChart').getContext('2d');
+      const gradientEth = eth.createLinearGradient(0, 0, 0, 200);
+      gradientEth.addColorStop(0, "rgba(55, 54, 123, 0.5)");
+      gradientEth.addColorStop(1, "rgba(0, 0, 0, 0)");
+      let dataEth = [];
+      for(let i = 0; i < 10; i++){
+        dataEth[i] = Math.floor(Math.random() * 10000); 
+      }
+      document.getElementById('EthAmount').innerHTML = dataEth[dataEth.length - 1] + "$";
+      let labelsEth = [];
+      for(let i = 0; i < dataEth.length; i++){
+        labelsEth[i]= i+".05.2022";
+      }
+      const EthChart = new Chart(eth, {
+          type: 'line',
+          data: {
+              labels: labelsEth,
+              datasets: [{
+                  label: 'Amount of $',
+                  data: dataEth,
+                  borderColor: [
+                      '#14044d',
+                  ],
+                  borderWidth: 3,
+                  tension: 0.5,
+                  fill: 'start',
+                  backgroundColor: gradientEth
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      grid: {
+                        color: '#e5e7eb',
+                      },
+                      ticks: {
+                        display: false,
+                      }
+                  },
+                x: {
+                  grid: {
+                    color: '#e5e7eb'
+                  },
+                  ticks: {
+                    display: false,
+                  }
+                }
+              },
+            plugins: {
+              legend: {
+                display: false,
+                labels: {
+                  display: false,
+                }
+              }
+            },
+            elements: {
+              point: {
+                radius: 0,
+                hitRadius: 100
+              }
+            }
+          }
+      });
+
+
+
+
+
+
+      const doge = document.getElementById('DogeChart').getContext('2d');
+      const gradientDoge = doge.createLinearGradient(0, 0, 0, 200);
+      gradientDoge.addColorStop(0, "rgba(203, 152, 123, 0.5)");
+      gradientDoge.addColorStop(1, "rgba(0, 0, 0, 0)");
+      let dataDoge = [];
+      for(let i = 0; i < 10; i++){
+        dataDoge[i] = Math.floor(Math.random() * 100); 
+      }
+      document.getElementById('DogeAmount').innerHTML = dataDoge[dataDoge.length - 1] + "$";
+      let labelsDoge = [];
+      for(let i = 0; i < dataDoge.length; i++){
+        labelsDoge[i]= i+".05.2022";
+      }
+      const DogeChart = new Chart(doge, {
+          type: 'line',
+          data: {
+              labels: labelsDoge,
+              datasets: [{
+                  label: 'Amount of $',
+                  data: dataDoge,
+                  borderColor: [
+                      '#cb9800',
+                  ],
+                  borderWidth: 3,
+                  tension: 0.5,
+                  fill: 'start',
+                  backgroundColor: gradientEth
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      grid: {
+                        color: '#e5e7eb',
+                      },
+                      ticks: {
+                        display: false,
+                      }
+                  },
+                x: {
+                  grid: {
+                    color: '#e5e7eb'
+                  },
+                  ticks: {
+                    display: false,
+                  }
+                }
+              },
+            plugins: {
+              legend: {
+                display: false,
+                labels: {
+                  display: false,
+                }
               }
             },
             elements: {
